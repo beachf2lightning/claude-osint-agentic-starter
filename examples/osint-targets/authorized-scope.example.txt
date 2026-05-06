@@ -1,0 +1,9 @@
+# Example authorized scope file.
+# Replace with assets you own or are explicitly authorized to assess.
+# Keep real client scope files out of Git unless approved.
+
+example.com
+example.org
+192.0.2.0/24
+198.51.100.10
+

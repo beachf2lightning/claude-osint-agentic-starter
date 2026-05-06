@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "local-osint-tools": {
+      "command": "python",
+      "args": ["-m", "agentic_starter.mcp_server"],
+      "env": {
+        "MCP_SERVER_LOG_LEVEL": "${MCP_SERVER_LOG_LEVEL}",
+        "PASSIVE_DNS_API_KEY": "${PASSIVE_DNS_API_KEY}"
+      },
+      "description": "Template for local defensive OSINT tooling. Keep passive and read-only by default."
+    }
+  }
+}
+

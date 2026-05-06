@@ -1,0 +1,12 @@
+services:
+  osint-agent:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    working_dir: /app
+    environment:
+      MCP_SERVER_LOG_LEVEL: info
+    volumes:
+      - ../examples:/app/examples:ro
+    command: python -m pytest
+

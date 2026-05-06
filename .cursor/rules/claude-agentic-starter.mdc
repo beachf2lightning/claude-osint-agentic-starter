@@ -1,0 +1,47 @@
+---
+description: Project rules for agentic coding with Claude or Cursor
+alwaysApply: true
+---
+
+# Project rules
+
+- Read `CLAUDE.md` before broad edits.
+- Prefer small, reviewable changes.
+- Add or update tests for behavior changes.
+- Run targeted tests before broad validation.
+- Do not remove tests to hide failures.
+- Do not commit secrets, API keys, tokens, target lists, scan output, or private data.
+- Ask before introducing new dependencies.
+- Preserve public APIs unless the task explicitly asks for a breaking change.
+- Update docs when setup, behavior, commands, or architecture changes.
+- Keep cybersecurity work defensive, authorized, and scoped.
+- Use offline fixtures for tests by default.
+- Put network-touching behavior behind explicit flags and document it.
+
+# Workflow expectations
+
+For bug fixes:
+
+- Reproduce the bug.
+- Add a regression test.
+- Implement the smallest fix.
+- Summarize root cause and verification.
+
+For refactors:
+
+- Preserve behavior.
+- Add characterization tests if coverage is weak.
+- Avoid unrelated formatting churn.
+
+For features:
+
+- Restate acceptance criteria.
+- Implement a small vertical slice first.
+- Add tests and update docs.
+
+For OSINT or recon workflows:
+
+- Confirm authorized scope.
+- Prefer passive-only collection unless active checks are explicitly authorized.
+- Keep dry-run mode available.
+- Do not add exploit, credential theft, evasion, persistence, or abuse-enabling logic.
