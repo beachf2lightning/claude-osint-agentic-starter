@@ -4,9 +4,21 @@ from __future__ import annotations
 
 import ipaddress
 import os
+import re
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
+
+_DNS_LABEL_PATTERN = re.compile(r"^(?!-)[a-z0-9-]{1,63}(?<!-)$")
+
+
+def _is_valid_dns_name(name: str) -> bool:
+    if not 1 <= len(name) <= 253:
+        return False
+    if "/" in name or ":" in name:
+        return False
+    labels = name.split(".")
+    return all(_DNS_LABEL_PATTERN.match(label) is not None for label in labels)
 
 
 class TargetType(StrEnum):
@@ -48,6 +60,9 @@ def normalize_target(value: str) -> Target | None:
         return Target(str(address), TargetType.IP_ADDRESS)
     except ValueError:
         pass
+
+    if not _is_valid_dns_name(lowered):
+        return None
 
     target_type = TargetType.DOMAIN if lowered.count(".") == 1 else TargetType.HOSTNAME
     return Target(lowered, target_type)
