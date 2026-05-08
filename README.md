@@ -35,6 +35,36 @@ python -m pip install -e ".[dev]"
 python -m pytest
 ```
 
+## Command-line usage
+
+After install, the `osint-agentic-starter` script exposes two subcommands.
+
+Normalize a string into a stable identifier:
+
+```bash
+osint-agentic-starter normalize "Hello, World"
+# hello-world
+```
+
+Load and normalize an authorized-scope file (offline; no DNS or network):
+
+```bash
+osint-agentic-starter scope examples/osint-targets/authorized-scope.example.txt
+osint-agentic-starter scope path/to/scope.txt --format jsonl
+```
+
+Use `--allowed-root` to confine reads to a trusted directory and reject symlink escapes or absolute paths outside it:
+
+```bash
+osint-agentic-starter scope ./scope/targets.txt --allowed-root ./scope
+```
+
+The bare form (no subcommand) is preserved for backward compatibility and behaves the same as `normalize`:
+
+```bash
+osint-agentic-starter "Hello, World"
+```
+
 ## Use with Claude Code in VS Code
 
 1. Open this folder in VS Code.
