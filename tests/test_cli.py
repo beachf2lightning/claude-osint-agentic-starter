@@ -63,10 +63,11 @@ def test_main_scope_jsonl_format(capsys: pytest.CaptureFixture[str]) -> None:
 
     assert rc == 0
     parsed = [json.loads(line) for line in captured.out.splitlines()]
+    expected_source = str(SCOPE_SMALL.resolve())
     assert parsed == [
-        {"value": "example.com", "target_type": "domain", "source": "authorized-scope"},
-        {"value": "192.0.2.10", "target_type": "ip_address", "source": "authorized-scope"},
-        {"value": "198.51.100.0/24", "target_type": "ip_network", "source": "authorized-scope"},
+        {"value": "example.com", "target_type": "domain", "source": expected_source},
+        {"value": "192.0.2.10", "target_type": "ip_address", "source": expected_source},
+        {"value": "198.51.100.0/24", "target_type": "ip_network", "source": expected_source},
     ]
 
 

@@ -85,6 +85,24 @@ def test_load_targets_from_file_rejects_symlink_escape(tmp_path: Path) -> None:
         load_targets_from_file(link, allowed_root=inside)
 
 
+def test_load_targets_from_file_sets_source_to_resolved_path(tmp_path: Path) -> None:
+    path = tmp_path / "scope.txt"
+    path.write_text("example.com\n192.0.2.10\n", encoding="utf-8")
+
+    targets = load_targets_from_file(path)
+
+    assert {target.source for target in targets} == {str(path.resolve())}
+
+
+def test_load_targets_from_file_respects_explicit_source(tmp_path: Path) -> None:
+    path = tmp_path / "scope.txt"
+    path.write_text("example.com\n192.0.2.10\n", encoding="utf-8")
+
+    targets = load_targets_from_file(path, source="lab-scope")
+
+    assert all(target.source == "lab-scope" for target in targets)
+
+
 def test_load_targets_from_file_loads_example_fixture() -> None:
     targets = load_targets_from_file(EXAMPLE_FIXTURE)
 

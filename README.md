@@ -53,6 +53,8 @@ osint-agentic-starter scope examples/osint-targets/authorized-scope.example.txt
 osint-agentic-starter scope path/to/scope.txt --format jsonl
 ```
 
+The `source` field in `--format jsonl` reflects the loaded file's resolved absolute path; callers using `load_targets_from_file` programmatically can override it via the `source` keyword.
+
 Use `--allowed-root` to confine reads to a trusted directory and reject symlink escapes or absolute paths outside it:
 
 ```bash

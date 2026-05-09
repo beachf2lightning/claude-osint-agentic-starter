@@ -5,7 +5,7 @@ from __future__ import annotations
 import ipaddress
 import os
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from enum import StrEnum
 from pathlib import Path
 
@@ -92,11 +92,14 @@ def load_targets_from_file(
     path: str | os.PathLike[str],
     *,
     allowed_root: str | os.PathLike[str] | None = None,
+    source: str | None = None,
 ) -> list[Target]:
     """Load and normalize targets from a UTF-8 scope file (BOM/CRLF tolerant).
 
     When ``allowed_root`` is set, the resolved path must lie within it; this
     rejects symlink escapes and absolute paths outside the trusted directory.
+    When ``source`` is None, each returned target's ``source`` is the file's
+    resolved absolute path; pass ``source`` to override.
     """
     resolved = Path(path).resolve(strict=True)
     if allowed_root is not None:
@@ -106,5 +109,7 @@ def load_targets_from_file(
     if resolved.is_dir():
         raise IsADirectoryError(f"expected file, got directory: {resolved}")
     text = resolved.read_text(encoding="utf-8-sig")
-    return normalize_targets(text.splitlines())
+    targets = normalize_targets(text.splitlines())
+    effective_source = source if source is not None else str(resolved)
+    return [replace(target, source=effective_source) for target in targets]
 
