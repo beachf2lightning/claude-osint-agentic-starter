@@ -76,10 +76,10 @@ def test_load_targets_from_file_rejects_symlink_escape(tmp_path: Path) -> None:
     outside = tmp_path / "outside"
     inside.mkdir()
     outside.mkdir()
-    secret = outside / "scope.txt"
-    secret.write_text("example.com\n", encoding="utf-8")
+    real_target = outside / "scope.txt"
+    real_target.write_text("example.com\n", encoding="utf-8")
     link = inside / "scope.txt"
-    link.symlink_to(secret)
+    link.symlink_to(real_target)
 
     with pytest.raises(ValueError, match="outside allowed_root"):
         load_targets_from_file(link, allowed_root=inside)

@@ -9,7 +9,7 @@ description = "A small starter package for Claude-assisted defensive OSINT codin
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Your Name" }]
+authors = [{ name = "Jeff Winstone" }]
 dependencies = []
 
 [project.optional-dependencies]
