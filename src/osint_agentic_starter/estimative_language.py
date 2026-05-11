@@ -14,9 +14,18 @@ PROBABILITY: dict[str, tuple[int, int]] = {
 }
 
 CONFIDENCE: dict[str, str] = {
-    "high":     "Strong source access, strong credibility, meaningful corroboration, short inference chain.",
-    "moderate": "Credible reporting but incomplete visibility, limited corroboration, or longer inference chain.",
-    "low":      "Plausible inference from thin, indirect, or weakly corroborated evidence.",
+    "high": (
+        "Strong source access, strong credibility, "
+        "meaningful corroboration, short inference chain."
+    ),
+    "moderate": (
+        "Credible reporting but incomplete visibility, "
+        "limited corroboration, or longer inference chain."
+    ),
+    "low": (
+        "Plausible inference from thin, indirect, "
+        "or weakly corroborated evidence."
+    ),
 }
 
 EVIDENCE_LABELS: list[str] = [

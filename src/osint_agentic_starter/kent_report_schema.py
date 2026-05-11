@@ -3,9 +3,9 @@ kent_report_schema.py
 Structured output schema for Step 6 report generation in osintmcp.
 """
 from __future__ import annotations
-from dataclasses import dataclass, field, asdict
-from typing import Optional
+
 import json
+from dataclasses import asdict, dataclass, field
 
 
 @dataclass
@@ -18,20 +18,20 @@ class ConfidenceBasis:
 
 @dataclass
 class AnalyticLayer:
-    technical_behavior: Optional[str] = None
+    technical_behavior: str | None = None
     technical_evidence_label: str = "source-observed"
-    tooling: Optional[str] = None
+    tooling: str | None = None
     tooling_evidence_label: str = "reported"
-    actor_label: Optional[str] = None
+    actor_label: str | None = None
     actor_label_evidence_label: str = "reported"
-    attribution: Optional[str] = None
-    attribution_probability: Optional[str] = None
-    attribution_confidence: Optional[str] = None
-    attribution_basis: Optional[ConfidenceBasis] = None
-    intent: Optional[str] = None
-    intent_probability: Optional[str] = None
-    intent_confidence: Optional[str] = None
-    intent_basis: Optional[ConfidenceBasis] = None
+    attribution: str | None = None
+    attribution_probability: str | None = None
+    attribution_confidence: str | None = None
+    attribution_basis: ConfidenceBasis | None = None
+    intent: str | None = None
+    intent_probability: str | None = None
+    intent_confidence: str | None = None
+    intent_basis: ConfidenceBasis | None = None
 
 
 @dataclass
@@ -67,7 +67,7 @@ class Finding:
     analytic_layers: AnalyticLayer
     assumptions: list[str] = field(default_factory=list)
     alternatives: list[AlternativeHypothesis] = field(default_factory=list)
-    bias_check: Optional[BiasCheck] = None
+    bias_check: BiasCheck | None = None
     collection_gaps: list[CollectionGap] = field(default_factory=list)
     change_indicators: list[str] = field(default_factory=list)
     defensive_implications: dict[str, str] = field(default_factory=lambda: {
