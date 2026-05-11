@@ -116,6 +116,8 @@ python -m pip install -e ".[dev]"
 
 If you use Kali in a VM, keep this repository inside your home directory rather than a shared folder when possible. Shared folders can create file permission issues for Python virtual environments, Docker bind mounts, and test caches.
 
+For day-to-day operator workflow on Kali, see [`docs/OPERATOR_RUNBOOK.md`](docs/OPERATOR_RUNBOOK.md).
+
 ## Docker quick start
 
 ```bash
