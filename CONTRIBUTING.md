@@ -135,12 +135,4 @@ Do not rely on `git rm` alone — pushed history persists indefinitely on forks,
 
 ## Reporting security issues
 
-Use GitHub Security Advisories to report a vulnerability privately. From the repository's "Security" tab, choose "Report a vulnerability". Do not file public issues for security reports.
-
-Please include:
-
-- A clear description of the issue and the affected component or file path.
-- Steps to reproduce, ideally as a minimal failing test or command.
-- Your assessment of impact and any suggested mitigation.
-
-We will acknowledge receipt and follow up with a coordinated disclosure timeline.
+See [SECURITY.md](SECURITY.md) for the full vulnerability disclosure policy.
